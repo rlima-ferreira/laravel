@@ -11,9 +11,4 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Rotas do Livro
-Route::resource('book', 'BookController');
+// Route::get('/home', 'HomeController@index')->name('home');
