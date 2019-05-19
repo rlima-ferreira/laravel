@@ -17,8 +17,7 @@ class Profile extends Model
 
     public $timestamp = false;
 
-    // Chave estrangeira para a tabela de usuários
-    public function user()
+    public function users()
     {
         return $this->hasMany('App\User');
     }

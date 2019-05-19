@@ -10,7 +10,7 @@ class Contact extends Model
     protected $table = 'contacts';
 
     // Atributos da tabela
-    protected $fillable = ['id', 'phone'];
+    protected $fillable = ['id', 'phone', 'user_id'];
 
     // Define a chave primária
     protected $primaryKey = 'id';

@@ -8,17 +8,6 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function index() {
-        return;
-    }
-
-    public function store(Request $request) {
-        $user = new User();
-        $user->fill($request->all());
-        $user->password = Hash::make($user->password);
-        $user->save();
-        return response()->json($user, 201);
-    }
 
     public function show($id) {
         $user = User::find($id);
@@ -30,6 +19,7 @@ class UserController extends Controller
         $user = User::find($id);
         if(!$user) return response()->json(['message' => 'Record not found',], 404);
         $user->fill($request->all());
+        $user->profile()->associate($request->profile_id);
         $user->save();
         return response()->json($user, 201);
     }

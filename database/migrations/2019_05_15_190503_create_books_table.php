@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('category', 100);
             $table->string('author', 300);
             $table->integer('pages');
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
