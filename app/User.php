@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function contact()
     {
-        return $this->belongsTo('App\Contact');
+        return $this->hasOne('App\Contact');
     }
 
     public function profile()

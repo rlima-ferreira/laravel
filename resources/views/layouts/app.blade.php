@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -49,6 +50,46 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="book" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                    Livros
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="book">
+                                    <a class="dropdown-item" href="{{ route('book.index') }}">Listar</a>
+                                    <a class="dropdown-item" href="{{ route('book-update') }}">Atualizar</a>
+                                    <a class="dropdown-item" href="{{ route('book-delete') }}">Deletar</a>
+                                    <a class="dropdown-item" href="{{ route('book-read') }}">Listar Lidos</a>
+                                    <a class="dropdown-item" href="{{ route('book-wanted') }}">Listar Desejados</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="profile" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                    Perfis
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile">
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">Listar</a>
+                                    <a class="dropdown-item" href="{{ route('profile-update') }}">Atualizar</a>
+                                    <a class="dropdown-item" href="{{ route('profile-delete') }}">Deletar</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="contact" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                    Contatos
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="contact">
+                                    <a class="dropdown-item" href="{{ route('contact.index') }}">Listar</a>
+                                    <a class="dropdown-item" href="{{ route('contact-update') }}">Atualizar</a>
+                                    <a class="dropdown-item" href="{{ route('contact-delete') }}">Deletar</a>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

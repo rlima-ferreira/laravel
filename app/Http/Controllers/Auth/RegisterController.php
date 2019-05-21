@@ -78,6 +78,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->profile()->associate($request->profile_id);
         $user->save();
-        return 'Usuário criado com sucesso';
+        return view('auth/login');
     }
 }
