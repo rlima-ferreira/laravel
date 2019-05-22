@@ -2,26 +2,24 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-11">
-            <div class="mb-4 text-right">
-                <button type="button" class="btn btn-success px-4" data-toggle="modal" data-target="#new">
-                    Adicionar
-                </button>
+    <div class="row">
+        <div class="col m11">
+            <div class="right-align" style="margin-bottom: 20px">
+                <a class="waves-effect waves-light btn modal-trigger" href="#new">Adicionar</a>
             </div>
         </div>
-        <div class="col-md-11">
+        <div class="col m11">
             <div>
-                <table class="table table-light table-hover">
+                <table class="highlight centered">
                     <thead>
-                        <th class="text-center">Código</th>
-                        <th class="text-center">Telefone</th>
+                        <th>Código</th>
+                        <th>Telefone</th>
                     </thead>
                     <tbody>
                         @foreach ($contacts as $contact)
                             <tr>
-                                <td class="text-center">{{$contact->id}}</td>
-                                <td class="text-center">{{$contact->phone}}</td>
+                                <td>{{$contact->id}}</td>
+                                <td>{{$contact->phone}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -31,26 +29,29 @@
     </div>
 </div>
 {{-- Modal Novo --}}
-<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div id="new" class="modal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Novo Contato</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title" id="exampleModalLongTitle">Novo Contato</h4>
             </div>
-            <form action="{{route('contact.store')}}" method="post">
+            <form action="{{route('contact.store')}}" method="post" style="margin-top: 30px">
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="input-field">
                         <label for="phone">Telefone</label>
                         <input type="phone" class="form-control" id="phone" name="phone">
                     </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary px-4">Salvar</button>
+                </div>
+                <div class="modal-footer" style="margin-top: 30px">
+                    <button type="submit" class="btn btn-large waves-effect waves-light">Salvar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.modal').modal();
+    });
+</script>
 @endsection

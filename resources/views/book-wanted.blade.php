@@ -2,32 +2,30 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-11">
-            <div class="mb-4 text-right">
-                <button type="button" class="btn btn-success px-4" data-toggle="modal" data-target="#new">
-                    Adicionar
-                </button>
+    <div class="row">
+        <div class="col m11">
+            <div class="right-align" style="margin-bottom: 20px">
+                <a class="waves-effect waves-light btn modal-trigger" href="#new">Adicionar</a>
             </div>
         </div>
-        <div class="col-md-11">
+        <div class="col m11">
             <div>
-                <table class="table table-light table-hover">
+                <table class="highlight centered">
                     <thead>
-                        <th class="text-center">Código</th>
-                        <th class="text-center">Nome</th>
-                        <th class="text-center">Categora</th>
-                        <th class="text-center">Autor</th>
-                        <th class="text-center">Páginas</th>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Categora</th>
+                        <th>Autor</th>
+                        <th>Páginas</th>
                     </thead>
                     <tbody>
                         @foreach ($wanteds as $book)
                             <tr>
-                                <td class="text-center">{{$book->id}}</td>
-                                <td class="text-center">{{$book->name}}</td>
-                                <td class="text-center">{{$book->category}}</td>
-                                <td class="text-center">{{$book->author}}</td>
-                                <td class="text-center">{{$book->pages}}</td>
+                                <td>{{$book->id}}</td>
+                                <td>{{$book->name}}</td>
+                                <td>{{$book->category}}</td>
+                                <td>{{$book->author}}</td>
+                                <td>{{$book->pages}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -37,28 +35,37 @@
     </div>
 </div>
 {{-- Modal Novo --}}
-<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div id="new" class="modal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Novo Livro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title" id="exampleModalLongTitle">Novo Livro</h4>
             </div>
-            <form action="{{route('mark-wanted')}}" method="post">
-                <div class="modal-body">
-                    <select class="custom-select" id="id" name="id">
-                        @foreach ($books as $book)
-                            <option value="{{$book->id}}">{{$book->name}}</option>
-                        @endforeach
-                    </select>
+            <form action="{{route('mark-read')}}" method="post" style="margin-top: 30px">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field col s12">
+                            <select id="id" name="id">
+                                <option value="" disabled selected>Selecione o livro</option>
+                                @foreach ($books as $book)
+                                    <option value="{{$book->id}}">{{$book->name}}</option>
+                                @endforeach
+                            </select>
+                            <label>Selecione o livro desejado</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary px-4">Salvar</button>
+                <div class="modal-footer" style="margin-top: 30px">
+                    <button type="submit" class="btn btn-large waves-effect waves-light">Salvar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.modal').modal();
+        $('select').formSelect();
+    });
+</script>
 @endsection

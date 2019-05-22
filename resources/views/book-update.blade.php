@@ -2,35 +2,52 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-11">
-            <div class="card">
-                <div class="card-header">Atualizar</div>
-                <div class="card-body">
+    <div class="row">
+        <div class="col m10 offset-m1">
+            <div class="card" style="padding: 5px 20px">
+                <h4>Atualizar</h4>
+                <div class="card-content">
                     <form method="post">
                         {{ method_field('put') }}
-                        <select class="custom-select" id="id" name="id">
-                            @foreach ($books as $book)
-                                <option value="{{$book->id}}">{{$book->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="form-group mt-3">
-                            <label for="name">Nome</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                        <div class="row">
+                            <div class="col s4">
+                                <div class="input-field">
+                                    <select id="id" name="id">
+                                        @foreach ($books as $book)
+                                            <option value="{{$book->id}}">{{$book->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="id">Selecione um livro</label>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field" style="margin-top: 30px">
+                                    <label for="name">Nome</label>
+                                    <input type="text" id="name" name="name">
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field" style="margin-top: 30px">
+                                    <label for="category">Categoria</label>
+                                    <input type="text" id="category" name="category">
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field" style="margin-top: 30px">
+                                    <label for="author">Autor</label>
+                                    <input type="text" id="author" name="author">
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field" style="margin-top: 30px">
+                                    <label for="pages">Páginas</label>
+                                    <input type="number" id="pages" name="pages">
+                                </div>
+                            </div>
+                            <div class="col s12 right-align" style="margin-top: 40px">
+                                <button type="submit" class="btn btn-large">Atualizar</button>
+                            </div>
                         </div>
-                        <div class="form-group mt-3">
-                            <label for="category">Categoria</label>
-                            <input type="text" class="form-control" id="category" name="category">
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="author">Autor</label>
-                            <input type="text" class="form-control" id="author">
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="pages">Páginas</label>
-                            <input type="number" class="form-control" id="pages">
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-5 btn-lg">Atualizar</button>
                     </form>
                 </div>
             </div>
@@ -47,6 +64,7 @@
             $('#pages').val(val.pages);
             $('form').attr('action', '/book/' + val.id);
         })
+        $('select').formSelect();
     })
 </script>
 @endsection

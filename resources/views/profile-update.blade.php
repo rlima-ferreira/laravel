@@ -2,23 +2,34 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-11">
-            <div class="card">
-                <div class="card-header">Atualizar</div>
-                <div class="card-body">
+    <div class="row">
+        <div class="col m6 offset-m3">
+            <div class="card" style="padding: 5px 20px">
+                <h4>Atualizar</h4>
+                <div class="card-content">
                     <form method="post">
                         {{ method_field('put') }}
-                        <select class="custom-select" id="id" name="id">
-                            @foreach ($profiles as $profile)
-                                <option value="{{$profile->id}}">{{$profile->type}}</option>
-                            @endforeach
-                        </select>
-                        <div class="form-group mt-3">
-                            <label for="type">Tipo</label>
-                            <input type="text" class="form-control" id="type" name="type">
+                        <div class="row">
+                            <div class="col s4">
+                                <div class="input-field">
+                                    <select id="id" name="id">
+                                        @foreach ($profiles as $profile)
+                                            <option value="{{$profile->id}}">{{$profile->type}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="id">Selecione um Perfil</label>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="input-field" style="margin-top: 30px">
+                                    <label for="type">Tipo</label>
+                                    <input type="text" class="form-control" id="type" name="type">
+                                </div>
+                            </div>
+                            <div class="col s12 right-align" style="margin-top: 40px">
+                                <button type="submit" class="btn btn-large">Atualizar</button>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-5 btn-lg">Atualizar</button>
                     </form>
                 </div>
             </div>
@@ -32,6 +43,7 @@
             $('#type').val(val.type);
             $('form').attr('action', '/profile/' + val.id);
         })
+        $('select').formSelect();
     })
 </script>
 @endsection
